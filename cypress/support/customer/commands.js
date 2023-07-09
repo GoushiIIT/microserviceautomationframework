@@ -1,5 +1,5 @@
-import { EnvironmentConfig, ProductConfig } from "../../configs";
-import { RequestMethodType, RequestStatusCodes, AuthTypeConstants } from "../../constants";
+import { EnvironmentConfig, ApplicationRoutes } from "../../configs/index.js";
+import { RequestMethodType, RequestStatusCodes, AuthTypeConstants } from "../../constants/index.js";
 
 //Custom Command file for Customer Helper Functions
 /// <reference types="cypress" /> 
@@ -8,7 +8,7 @@ Cypress.Commands.add('getAllCustomerDetails', () => {
 
     cy.executeAPIRequest(
         RequestMethodType.Get,
-        ProductConfig.ApplicationRoutes.customer,
+        ApplicationRoutes.customer,
         null,
         true,
         AuthTypeConstants.BASIC,
@@ -26,7 +26,7 @@ Cypress.Commands.add('getCustomerById', (customerId) => {
 
     cy.executeAPIRequest(
         RequestMethodType.Get,
-        ProductConfig.ApplicationRoutes.customer + "/" + customerId,
+        ApplicationRoutes.customer + "/" + customerId,
         null,
         true,
         AuthTypeConstants.BASIC,
@@ -42,9 +42,10 @@ Cypress.Commands.add('getCustomerById', (customerId) => {
 
 Cypress.Commands.add('createCustomerViaAPI', (customerName, customerAddress) => {
 
+    debugger;
     return cy.executeAPIRequest(
         RequestMethodType.Post,
-        ProductConfig.ApplicationRoutes.customer,
+        ApplicationRoutes.customer,
         {
                 "customerName": customerName,
                 "customerAddress": customerAddress

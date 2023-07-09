@@ -1,11 +1,11 @@
-import { ProductConfig } from "../../configs";
+import { ApplicationRoutes } from "../../configs";
 import { RequestMethodType, RequestStatusCodes } from "../../constants";
 
 Cypress.Commands.add('createOrderViaAPI', (customerId, datePlaced = "2023-01-01") => {
 
     return cy.executeAPIRequest(
         RequestMethodType.Post,
-        ProductConfig.ApplicationRoutes.order.default,
+        ApplicationRoutes.order.default,
         {
             "customerId": customerId,
             "datePlaced": datePlaced
@@ -19,7 +19,7 @@ Cypress.Commands.add('getOrderByCustomerId', (customerId) => {
 
     cy.executeAPIRequest(
         RequestMethodType.Get,
-        ProductConfig.ApplicationRoutes.order.default + "/" + customerId,
+        ApplicationRoutes.order.default + "/" + customerId,
         null
     ).then(response => {
 
